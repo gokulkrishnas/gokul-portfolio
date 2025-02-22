@@ -12,7 +12,7 @@
     --bg-secondary: #191a1a;
     --text-primary: #ffffff;
     --text-secondary: #ffffff;
-    --accent: #FFAF00;
+    --accent: #22b667;
     --nav-height: 80px;
     --rainbow-color: linear-gradient(90deg, #00DAF4 0%, #5EDC99 20%, #BADA6D 40%, #FFC800 60%, #FFAF00 80%, #FF7800 100%);
     --dot-bg: #0b0a0c;
@@ -298,7 +298,7 @@ section {
 .timeline-item {
     margin-bottom: 3rem;
     padding: 1.5rem;
-    background-color: var(--bg-secondary);
+    background: var(--bg-secondary);
     border-radius: 10px;
 }
 
@@ -435,5 +435,79 @@ footer {
 
     .hero h1 {
         font-size: 2.5rem;
+    }
+}
+
+/* Flip Card Animations */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1100px;
+    justify-content: center;
+    margin: 10px auto;
+
+    .item.flip-card {
+        background-color: transparent;
+        width: 228px;
+        height: 228px;
+        perspective: 1000px;
+        margin: 0 6px 12px 6px;
+        filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.2));
+
+        &:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            border-radius: 10px;
+        }
+
+        .flip-img,
+        .flip-text {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+
+        .flip-img {
+            background-color: var(--bg-secondary);
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+
+            .img-flex {
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                width: 100%;
+                height: 100%;
+                border-radius: 10px;
+            }
+        }
+
+        .flip-text {
+            background-color: var(--bg-secondary);
+            color: white;
+            transform: rotateY(180deg);
+            font-size: 32px;
+            align-items: flex-start;
+            justify-content: flex-start;
+            border-radius: 10px;
+            padding: 10px 25px;
+            z-index: 10;
+        }
     }
 }
