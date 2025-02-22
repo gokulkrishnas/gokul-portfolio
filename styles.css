@@ -1,0 +1,439 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+:root {
+    --bg-primary: #0b0a0c;
+    --bg-secondary: #191a1a;
+    --text-primary: #ffffff;
+    --text-secondary: #ffffff;
+    --accent: #FFAF00;
+    --nav-height: 80px;
+    --rainbow-color: linear-gradient(90deg, #00DAF4 0%, #5EDC99 20%, #BADA6D 40%, #FFC800 60%, #FFAF00 80%, #FF7800 100%);
+    --dot-bg: #0b0a0c;
+    --dot-color: rgb(255, 255, 255);
+    --dot-size: 1px;
+    --dot-space: 40px;
+}
+
+body {
+    /* background: url('Resources/background_image.avif') center/cover; */
+    color: var(--text-primary);
+    line-height: 1.6;
+    background:
+        linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 100%) center / var(--dot-space) var(--dot-space),
+        linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 100%) center / var(--dot-space) var(--dot-space),
+        var(--dot-color);
+}
+
+/* Background gradient animation */
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background:
+        radial-gradient(circle at 80% 20%, rgba(191, 0, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 20% 80%, rgba(0, 128, 255, 0.15) 0%, transparent 50%);
+    animation: gradientMove 20s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 100% 100%;
+    }
+
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+/* Enhanced Navigation Styles */
+nav {
+    position: fixed;
+    width: 100%;
+    height: var(--nav-height);
+    background-color: var(--bg-primary);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+nav.scrolled {
+    height: 60px;
+    background-color: rgb(0, 0, 0);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.nav-content {
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--text-primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo span {
+    color: var(--accent);
+    opacity: 0;
+    transform: translateX(-10px);
+    animation: fadeInLogo 0.5s ease forwards;
+}
+
+@keyframes fadeInLogo {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    position: relative;
+    padding: 0.5rem 0;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInNav 0.5s ease forwards;
+}
+
+.nav-links a:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.nav-links a:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.nav-links a:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.nav-links a:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.nav-links a:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.nav-links a:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+@keyframes fadeInNav {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a.active {
+    color: var(--accent);
+}
+
+.nav-links a.active::after {
+    width: 100%;
+}
+
+/* Mobile Navigation */
+.mobile-nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1000;
+}
+
+.mobile-nav-toggle .bar {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: var(--text-primary);
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav-toggle.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-nav-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-nav-toggle.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+@media (max-width: 768px) {
+    .mobile-nav-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 100%;
+        background-color: var(--bg-primary);
+        flex-direction: column;
+        justify-content: center;
+        transition: right 0.3s ease;
+        padding: 2rem;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links a {
+        font-size: 1.2rem;
+    }
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    /* background: url('Resources/background_image.avif') center/cover; */
+}
+
+.hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero h2 {
+    color: var(--accent);
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.hero p {
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin-bottom: 2rem;
+}
+
+/* Sections */
+section {
+    padding: 5rem 2rem;
+}
+
+.section-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+/* Education & Experience */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline-item {
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    background-color: var(--bg-secondary);
+    border-radius: 10px;
+}
+
+.timeline-item h3 {
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.timeline-item .date {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.education-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.education-header img {
+    max-width: 100px;
+    height: auto;
+    margin-left: 1rem;
+    border-radius: 8px;
+}
+
+/* Projects */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.project-content {
+    padding: 1.5rem;
+}
+
+.project-content h3 {
+    margin-bottom: 1rem;
+}
+
+.project-content p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+/* Skills */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+    text-align: center;
+}
+
+.skill-item {
+    padding: 1rem;
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+}
+
+/* Contact */
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--text-secondary);
+    border-radius: 4px;
+    color: var(--text-primary);
+}
+
+button {
+    background-color: var(--accent);
+    color: var(--bg-primary);
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    background:
+        linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 100%) center / var(--dot-space) var(--dot-space),
+        linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 100%) center / var(--dot-space) var(--dot-space),
+        var(--dot-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+}
