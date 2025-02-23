@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Tourney:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Roboto', serif;
 }
 
 :root {
@@ -12,13 +13,14 @@
     --bg-secondary: #191a1a;
     --text-primary: #ffffff;
     --text-secondary: #ffffff;
-    --accent: #22b667;
+    --accent: white;
     --nav-height: 80px;
     --rainbow-color: linear-gradient(90deg, #00DAF4 0%, #5EDC99 20%, #BADA6D 40%, #FFC800 60%, #FFAF00 80%, #FF7800 100%);
     --dot-bg: #0b0a0c;
     --dot-color: rgb(255, 255, 255);
     --dot-size: 1px;
     --dot-space: 40px;
+    --navbar-color: #FFAF00;
 }
 
 body {
@@ -29,6 +31,23 @@ body {
         linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 100%) center / var(--dot-space) var(--dot-space),
         linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 100%) center / var(--dot-space) var(--dot-space),
         var(--dot-color);
+}
+
+/* Neon Effects */
+.neon-text {
+    font-size: 4rem;
+    color: black;
+    text-shadow: 0 0 5px #FFAF00, 0 0 10px #FFAF00, 0 0 20px #FFAF00, 0 0 40px #FFAF00, 0 0 80px #FFAF00;
+    animation: glow 1s infinite alternate;
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 5px #FFAF00, 0 0 10px #FFAF00, 0 0 20px #FFAF00, 0 0 30px #FFAF00, 0 0 40px #FFAF00;
+    }
+    100% {
+        text-shadow: 0 0 10px #00DAF4, 0 0 20px #00DAF4, 0 0 30px #00DAF4, 0 0 40px #00DAF4;
+    }
 }
 
 /* Background gradient animation */
@@ -89,11 +108,14 @@ nav.scrolled {
 .logo {
     font-size: 1.8rem;
     font-weight: bold;
-    color: var(--text-primary);
     text-decoration: none;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    background: var(--rainbow-color); 
+    -webkit-background-clip: text; 
+    background-clip: text; 
+    color: transparent;
 }
 
 .logo span {
@@ -166,7 +188,7 @@ nav.scrolled {
     left: 0;
     width: 0;
     height: 2px;
-    background-color: var(--accent);
+    background-color: var(--navbar-color);
     transition: width 0.3s ease;
 }
 
@@ -175,7 +197,7 @@ nav.scrolled {
 }
 
 .nav-links a.active {
-    color: var(--accent);
+    color: var(--navbar-color);
 }
 
 .nav-links a.active::after {
@@ -336,7 +358,7 @@ section {
 
 .project-card {
     background-color: var(--bg-secondary);
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
     transition: transform 0.3s;
 }
@@ -347,7 +369,7 @@ section {
 
 .project-card img {
     width: 100%;
-    height: 200px;
+    height: 150px;
     object-fit: cover;
 }
 
@@ -356,12 +378,13 @@ section {
 }
 
 .project-content h3 {
+    color: var(--accent);
     margin-bottom: 1rem;
 }
 
 .project-content p {
     color: var(--text-secondary);
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 }
 
 /* Skills */
